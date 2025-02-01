@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body{
+    background-color: rgb(77, 73, 73);
+}
+
+li{
+    border: 0.1rem solid black;
+}
