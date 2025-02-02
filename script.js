@@ -16,7 +16,12 @@ openPopup.addEventListener("click", () => {
   popup.classList.remove("hidden");
   popup.classList.add("flex");
 });
-
+popup.addEventListener("click", (e) => {
+  if (e.target === popup) {
+    popup.classList.remove("flex");
+    popup.classList.add("hidden");
+  }
+});
 hidePopup.addEventListener("click", () => {
   popup.classList.remove("flex");
   popup.classList.add("hidden");
@@ -32,15 +37,34 @@ const addTask = (task) => {
     "justify-between",
     "items-center",
     "gap-2",
-    "p-2",
-    "border-0"
+    "px-4",
+    "py-2",
+    "rounded-2xl",
+    "bg-neutral-600",
+    "my-2",
+    "gap-2",
+    "break-all"
   );
   const taskText = document.createElement("span");
   taskText.textContent = task;
   const checkBox = document.createElement("input");
   checkBox.type = "checkbox";
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = " delete";
+  checkBox.classList.add(
+    "form-checkbox",
+    "accent-green-600",
+    "w-6",
+    "h-6",
+    "flex-none"
+  );
+  const deleteBtn = document.createElement("i");
+  deleteBtn.classList.add(
+    "bi",
+    "bi-trash",
+    "text-red-600",
+    "hover:text-red-300",
+    "text-3xl"
+  );
+
   deleteBtn.addEventListener("click", () => {
     newTask.remove();
     removeFromLocalStorage(task);
@@ -71,7 +95,6 @@ addBtn.addEventListener("click", () => {
 
 window.addEventListener("load", () => {
   listValues.forEach((task) => {
-  taskList.appendChild(addTask(task));
+    taskList.appendChild(addTask(task));
   });
 });
-
